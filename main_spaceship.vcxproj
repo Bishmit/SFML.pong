@@ -24,6 +24,7 @@
     <ProjectGuid>{15935463-8ff6-4864-b508-3153ce2b274c}</ProjectGuid>
     <RootNamespace>mainspaceship</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>pong_game</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -6,7 +6,7 @@ bat::bat():speed(0.1f)
 	b1.setFillColor(sf::Color::Green); 
 	b1.setPosition(0.f, 0.f); 
 	b2.setSize(sf::Vector2f(20.f, 150.f));
-	b2.setFillColor(sf::Color::Cyan);
+	b2.setFillColor(sf::Color::Green);
 	b2.setPosition(580.f, 0.f);
 }
 void bat::updateWallCollision(const sf::RenderWindow* target)

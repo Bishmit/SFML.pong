@@ -3,7 +3,7 @@
 Player::Player(float radius, const sf::Vector2f& initialVelocity)
     : radius(radius), velocity(initialVelocity)
 {
-    circle.setFillColor(sf::Color::Green);
+    circle.setFillColor(sf::Color::White);
     circle.setRadius(radius);
     circle.setPosition(300.f, 60.f); // Set initial position
 }
