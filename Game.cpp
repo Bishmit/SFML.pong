@@ -29,9 +29,15 @@ void Game::update(float dt) {
 
     if (ball.getShape().getGlobalBounds().intersects(ba.getShapeb1().getGlobalBounds()) ||
         ball.getShape().getGlobalBounds().intersects(ba.getShapeb2().getGlobalBounds())) {
-        ball.reverseX(); 
+        ball.reverseX();   
         this->score++;
         text.setString("Score: " + std::to_string(this->score));
+        sf::Vector2f velocity = ball.get_velocity();
+        float speedIncrease = 0.1f; 
+        velocity.x += speedIncrease;
+        velocity.y += speedIncrease; 
+        std::cout << "x: " << velocity.x << "y: " << velocity.y << "\n"; 
+        ball.setVelocity(velocity); 
         std::cout << score << "\n"; 
     }
 }
@@ -55,3 +61,5 @@ void Game::initFontAndText() {
     text.setFillColor(sf::Color::White);
     text.setPosition(30.f, 5.f); // Set the position
 }
+
+

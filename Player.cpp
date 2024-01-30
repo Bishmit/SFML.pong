@@ -21,7 +21,7 @@ void Player::update(sf::RenderWindow* window, float deltaTime) {
         circle.move(velocity * deltaTime);
 
         // Collision detection with the walls
-        if (circle.getPosition().x - radius <= 0.f || circle.getPosition().x + radius >= window->getSize().x) {
+        if (circle.getPosition().x - radius <= 12.f || circle.getPosition().x + radius >= window->getSize().x-20) {
             // Change horizontal direction upon collision with left or right wall
             reverseX(); 
         }
@@ -46,4 +46,8 @@ void Player::reverseX()
 void Player::reverseY()
 {
     velocity.y = -velocity.y;
+}
+
+void Player::setVelocity(const sf::Vector2f& newVelocity) {
+    velocity = newVelocity;
 }
