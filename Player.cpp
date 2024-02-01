@@ -9,21 +9,30 @@ Player::Player(float radius, const sf::Vector2f& initialVelocity)
 }
 
 void Player::update(sf::RenderWindow* window, float deltaTime) {
-    static bool isMoving = false;
+    static bool isMoving = false, isGameover = false; 
 
     // Check for Enter key press to start the ball movement
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
         isMoving = true;
     }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+        isGameover = true;
+    }
+
     // Move the ball only if it's started
-    if (isMoving) {
+    if (isMoving && isGameover) {
         circle.move(velocity * deltaTime);
 
         // Collision detection with the walls
-        if (circle.getPosition().x - radius <= 12.f || circle.getPosition().x + radius >= window->getSize().x-20) {
+        if (circle.getPosition().x - radius <= 0.f || circle.getPosition().x + radius >= window->getSize().x-20) {
             // Change horizontal direction upon collision with left or right wall
-            reverseX(); 
+            if (circle.getPosition().x - radius <= 0.f) {
+                isGameover = false; 
+            }
+            if (circle.getPosition().x + radius >= window->getSize().x - 20) {
+                isGameover = false; 
+            }
         }
         if (circle.getPosition().y - radius <= 0.f || circle.getPosition().y + radius >= window->getSize().y) {
             // Change vertical direction upon collision with top or bottom wall

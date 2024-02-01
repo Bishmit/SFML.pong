@@ -9,15 +9,19 @@ private:
     sf::Event event;
     Player ball;
     bat ba;
-    int score;
+    int leftscore, rightscore; 
     sf::Font font;
     sf::Text text;
 
     void initWindow();
     void initFontAndText();
 
+    void ScoreBoardLeftBat();
+
+    void ScoreBoardRightBat();
+
 public:
-    Game(int score);
+    Game(int leftscore = 0, int rightscore = 0);
     ~Game();
 
     const bool isGameRunning() const;
