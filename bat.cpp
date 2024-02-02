@@ -1,6 +1,6 @@
 #include "bat.h"
 
-bat::bat():speed(0.1f)
+bat::bat():speed(0.2f)
 {
 	b1.setSize(sf::Vector2f(20.f, 150.f)); 
 	b1.setFillColor(sf::Color::Green); 
@@ -36,24 +36,26 @@ void bat::updateWallCollision(const sf::RenderWindow* target)
 	}
 
 }
-void bat::update(const sf::RenderWindow* target)
+bool bat::update(const sf::RenderWindow* target)
 {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 			this->b1.move(0, -this->speed);
+			return true; 
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			this->b1.move(0, this->speed);
+			return true; 
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::O)) {
 			this->b2.move(0, -this->speed);
+			return true; 
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {
 			this->b2.move(0, this->speed);
-		}
-
-		updateWallCollision(target); 
-		
+			return true; 
+		}	
+		return false; 
 }
 
 

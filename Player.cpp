@@ -9,38 +9,11 @@ Player::Player(float radius, const sf::Vector2f& initialVelocity)
 }
 
 void Player::update(sf::RenderWindow* window, float deltaTime) {
-    static bool isMoving = false, isGameover = false; 
-
-    // Check for Enter key press to start the ball movement
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-        isMoving = true;
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-        isGameover = true;
-    }
-
-    // Move the ball only if it's started
-    if (isMoving && isGameover) {
+    if (GameoverShits(window)) {
         circle.move(velocity * deltaTime);
-
-        // Collision detection with the walls
-        if (circle.getPosition().x - radius <= 0.f || circle.getPosition().x + radius >= window->getSize().x-20) {
-            // Change horizontal direction upon collision with left or right wall
-            if (circle.getPosition().x - radius <= 0.f) {
-                isGameover = false; 
-            }
-            if (circle.getPosition().x + radius >= window->getSize().x - 20) {
-                isGameover = false; 
-            }
-        }
-        if (circle.getPosition().y - radius <= 0.f || circle.getPosition().y + radius >= window->getSize().y) {
-            // Change vertical direction upon collision with top or bottom wall
-            reverseY();
-        }
     }
+    
 }
-
 
 void Player::render(sf::RenderWindow* window) {
     window->draw(circle);
@@ -60,3 +33,28 @@ void Player::reverseY()
 void Player::setVelocity(const sf::Vector2f& newVelocity) {
     velocity = newVelocity;
 }
+
+
+bool Player::GameoverShits(sf::RenderWindow *window) {
+    if (circle.getPosition().y - radius <= 0.f || circle.getPosition().y + radius >= window->getSize().y) {
+        // Change vertical direction upon collision with top or bottom wall
+        reverseY();
+        return true; 
+    }
+    if (circle.getPosition().x - radius <= 0.f || circle.getPosition().x + radius >= window->getSize().x - 20) {
+        postGameOverStuffs(window); 
+        return false;
+    }
+}
+
+void Player::postGameOverStuffs(sf::RenderWindow *window) {
+   // circle.setPosition(300.f, 60.f); 
+    if (!b.update(window)) {
+        float new_speed = b.get_speed();
+        new_speed = 0.f;
+        b.getShapeb1().setPosition(0.f, 0.f);
+        std::cout << "rokkiyo hai" << "\n";
+        b.getShapeb2().setPosition(0.f, 580.f);
+    }
+}
+

@@ -26,7 +26,7 @@ void Game::update(float dt) {
 
     ball.update(window, dt);
     ba.update(window);
-
+    ba.updateWallCollision(window); 
     ScoreBoardLeftBat(); 
     ScoreBoardRightBat(); 
 }
@@ -62,7 +62,7 @@ void Game::ScoreBoardLeftBat() {
 }
 
 void Game::ScoreBoardRightBat() {
-    if  (ball.getShape().getGlobalBounds().intersects(ba.getShapeb2().getGlobalBounds()))
+    if (ball.getShape().getGlobalBounds().intersects(ba.getShapeb2().getGlobalBounds()))
     {
         ball.reverseX();
         this->rightscore++;
